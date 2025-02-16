@@ -108,15 +108,7 @@ class ChatPage extends StatelessWidget {
           Column(
             children: [
               Expanded(
-                child:
-                    //to make state of messages fixed
-                    BlocBuilder<ChatCubit, ChatState>(
-                  // BlocConsumer<ChatCubit, ChatState>(
-                  // listener: (context, state) {
-                  //   if (state is ChatSuccess) {
-                  //     messagesList = state.messages;
-                  //   }
-                  // },
+                child:BlocBuilder<ChatCubit, ChatState>(
                   builder: (context, state) {
                     var messagesList =
                         BlocProvider.of<ChatCubit>(context).messagesList;
