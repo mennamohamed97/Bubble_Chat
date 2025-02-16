@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-// bloc have 2 stream receive loginEvent and produce loginState
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
     on<LoginEvent>((event, emit) async {
@@ -32,13 +31,4 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     });
   }
-
-  // to track what happened in states or events
-  //replace with bloc observer
-
-  // @override
-  // void onTransition(Transition<LoginEvent, LoginState> transition) {
-  //   print(transition);
-  //   super.onTransition(transition);
-  // }
 }
