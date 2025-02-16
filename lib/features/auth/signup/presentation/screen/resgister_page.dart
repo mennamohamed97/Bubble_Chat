@@ -22,7 +22,6 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // change SignupCubit with SignupBloc
     return BlocConsumer<SignupBloc, SignupState>(
       listener: (context, state) {
         if (state is SignupLoading) {
@@ -111,9 +110,6 @@ class RegisterPage extends StatelessWidget {
                     CustomButton(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          // change trigger from cubit to bloc
-                          // BlocProvider.of<SignupCubit>(context)
-                          //     .registerUser(email: email!, password: password!);
                           BlocProvider.of<SignupBloc>(context).add(
                               AuthSignupEvent(
                                   email: email!, password: password!));
