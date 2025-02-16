@@ -8,7 +8,6 @@ part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   ChatCubit() : super(ChatInitial());
-//to make state of messages fixed
   List<Message> messagesList = [];
   final CollectionReference messages =
       FirebaseFirestore.instance.collection(kMessagesCollections);
@@ -18,16 +17,11 @@ class ChatCubit extends Cubit<ChatState> {
         {kMessage: message, kCreatedAt: DateTime.now(), 'id': email},
       );
     } on Exception catch (e) {
-      //can but if message failed to sent
     }
   }
 
   void getMessages() {
-    // This is the stream, so we need to listen to it like a StreamBuilder
-    // `event` includes all docs of the collection
-    // `event` is of type snapshot, so it includes all data
     messages.orderBy(kCreatedAt, descending: true).snapshots().listen((event) {
-      // List<Message> messagesList = [];
       messagesList.clear();
       for (var doc in event.docs) {
         messagesList.add(Message.fromJson(doc.data() as Map<String, dynamic>));
@@ -35,12 +29,4 @@ class ChatCubit extends Cubit<ChatState> {
       emit(ChatSuccess(messages: messagesList));
     });
   }
-
-  //  to track what happened in states
-  //replace with bloc observer
-  // @override
-  // void onChange(Change<ChatState> change) {
-  //   print(change);
-  //   super.onChange(change);
-  // }
 }
