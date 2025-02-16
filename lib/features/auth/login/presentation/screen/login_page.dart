@@ -110,8 +110,6 @@ class LoginPage extends StatelessWidget {
                   CustomButton(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        // BlocProvider.of<LoginCubit>(context)
-                        //     .loginUser(email: email!, password: password!);
                         BlocProvider.of<LoginBloc>(context).add(
                             AuthLoginEvent(email: email!, password: password!));
                       } else {}
